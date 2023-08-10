@@ -1,0 +1,9 @@
+
+.errorlabel {
+    color: red;
+    font-size: 12px;
+    font-weight: bold;
+    margin-top: 5px;
+    text-decoration: underline;
+    align-items: center;
+}

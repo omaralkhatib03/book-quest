@@ -1,0 +1,41 @@
+
+
+
+
+.book-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+    padding: 10px 10% 10px 10%;
+
+}
+
+.placeholder {
+    width: 20%;
+    border-radius: 10%;
+    margin: 10px;
+}
+
+.info-row {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-left: 10px;
+    width: 100%;
+}
+
+.info-column {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    text-align: start;
+}
+
+.info {
+    padding: 5px 0px 5px 0px;
+    margin: 0px 5px 0px 5px;
+}

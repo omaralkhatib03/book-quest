@@ -1,0 +1,1 @@
+sudo docker run --rm --name "book_quest_container" book_quest_container
