@@ -13,9 +13,9 @@ export default function BookView() {
   const navigate = useNavigate();
   const [err, setError] = useState(false);
   const [books, setBooks] = useState([]);
-  const [filter, setFilter] = useState("/books");
+  const [filter, setFilter] = useState("/data/books");
   const [filterAuthor, setFilterAuthor] = useState("");
-  const [filterTitle, setFilterTitle] = useState("");
+  const [filterTitle, setFilterTitle] = useState(""); 
 
   const config = {
     headers: {
@@ -27,7 +27,7 @@ export default function BookView() {
     setFilterAuthor(e.target.value);
     axios
       .post(
-        ApiContext.getUrl() + "/books/author",
+        ApiContext.getUrl() + "/data/books/author",
         {
           author: e.target.value,
         },
@@ -48,7 +48,7 @@ export default function BookView() {
     setFilterTitle(e.target.value);
     axios
       .post(
-        ApiContext.getUrl() + "/books/title",
+        ApiContext.getUrl() + "/data/books/title",
         {
           title: e.target.value,
         },
@@ -67,7 +67,7 @@ export default function BookView() {
 
   const handleLogout = async () => {
     axios
-      .delete(ApiContext.getUrl() + "/user/logout", config)
+      .delete(ApiContext.getUrl() + "/auth/user/logout", config)
       .then((res) => {
         if (res.data === "Logged out successfully") navigate("/");
       })
@@ -129,28 +129,28 @@ export default function BookView() {
             style={{ marginRight: "10px" }}
             text="All Books"
             func={() => {
-              setFilter("/books");
+              setFilter("/data/books");
             }}
           />
           <NiceButton
             style={{ marginRight: "10px" }}
             text="Periodicals Books"
             func={() => {
-              setFilter("/books/Periodicals");
+              setFilter("/data/books/Periodicals");
             }}
           />
           <NiceButton
             style={{ marginRight: "10px" }}
             text="NonFiction Books"
             func={() => {
-              setFilter("/books/NonFiction");
+              setFilter("/data/books/NonFiction");
             }}
           />
           <NiceButton
             style={{ marginRight: "10px" }}
             text="Fiction Books"
             func={() => {
-              setFilter("/books/Fiction");
+              setFilter("/data/books/Fiction");
             }}
           />
         </div>

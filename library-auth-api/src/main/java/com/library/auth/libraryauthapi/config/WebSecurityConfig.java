@@ -31,6 +31,7 @@ public class WebSecurityConfig {
                 .requestMatchers("/user/test").permitAll()
                 .requestMatchers(HttpMethod.POST, "/user/register").permitAll()
                 .requestMatchers(HttpMethod.POST, "/user/login").permitAll()
+                .requestMatchers(HttpMethod.OPTIONS, "/user/validate").permitAll()
                 .anyRequest().authenticated()
             )
             .sessionManagement((session) -> session

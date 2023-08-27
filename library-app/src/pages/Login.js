@@ -44,7 +44,7 @@ function LoginPage() {
     if (await validate()) {
       console.log(ApiContext.getUrl());
       axios
-        .post(ApiContext.getUrl() + "/user/login", values)
+        .post(ApiContext.getUrl() + "/auth/user/login", values)
         .then((res) => {
           if (res.status !== 200) {
             setError(true);

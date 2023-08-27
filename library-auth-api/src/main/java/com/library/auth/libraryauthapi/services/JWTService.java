@@ -93,7 +93,7 @@ public class JWTService {
         (tokenRepository.findByToken(token).orElse(null) != null);
     }
 
-    private boolean isTokenExpired(String token) {
+    public boolean isTokenExpired(String token) {
         return extractClaim(token, Claims::getExpiration).before(new Date());
     }
 

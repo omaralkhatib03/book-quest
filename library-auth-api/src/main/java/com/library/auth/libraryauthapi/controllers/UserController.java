@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.library.auth.libraryauthapi.models.authentication.AuthenticationRequest;
@@ -19,7 +20,9 @@ import com.library.auth.libraryauthapi.models.register.RegisterResponse;
 import com.library.auth.libraryauthapi.services.AuthenticationService;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.log4j.Log4j2;
 
+@Log4j2
 @RestController
 @RequestMapping("/user")
 @RequiredArgsConstructor
@@ -72,14 +75,13 @@ public class UserController {
             return ResponseEntity.badRequest().build();
         }
         token = token.substring(7);
-        
+
         ProfileResponse res = authenticationService.getProfile(token);
         return (res == null) ? ResponseEntity.badRequest().build() : ResponseEntity.ok(res);
     }
 
-
     @PutMapping()
-    public ResponseEntity<ProfileResponse> updateProfile(@RequestBody RegisterRequest req) {        
+    public ResponseEntity<ProfileResponse> updateProfile(@RequestBody RegisterRequest req) {
         ProfileResponse res = authenticationService.updateProfile(req);
         return (res == null) ? ResponseEntity.badRequest().build() : ResponseEntity.ok(res);
     }
@@ -92,6 +94,19 @@ public class UserController {
         token = token.substring(7);
         String res = authenticationService.deleteProfile(token);
         return (res == null) ? ResponseEntity.badRequest().build() : ResponseEntity.ok(res);
+    }
+
+    @RequestMapping(method = RequestMethod.OPTIONS, path = "/validate")
+    public ResponseEntity<Boolean> isValid(@RequestHeader("Authorization") String token) {
+
+        if (token == null || token.isEmpty()) {
+            return ResponseEntity.badRequest().build();
+        }
+
+        token = token.substring(7);
+
+        Boolean res = authenticationService.isValid(token);
+        return (res) ? ResponseEntity.ok(res) : ResponseEntity.badRequest().build();
     }
 
 }

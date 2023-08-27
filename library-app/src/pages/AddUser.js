@@ -53,7 +53,7 @@ function AddUserPage() {
 
     if (await validate()) {
       axios
-        .post(ApiContext.getUrl() + "/user/register", values)
+        .post(ApiContext.getUrl() + "/auth/user/register", values)
         .then((res) => {
           if (res.data.error === "Email already exists")
           {
@@ -66,8 +66,14 @@ function AddUserPage() {
           navigate("/");
         })
         .catch((err) => {
-          if (err.response.data.error === "Email already exists")
+          console.log(err);
+          try {
+            if (err.response.data.error === "Email already exists")
             setEmailInUse(true);
+          } catch (error) {
+            // console.log(error);
+          }
+
         });
     } else {
       setError(true);

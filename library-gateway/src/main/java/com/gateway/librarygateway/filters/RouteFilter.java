@@ -20,7 +20,7 @@ public class RouteFilter extends ZuulFilter {
 
     @Override
     public Object run() {
-        System.out.println("Inside Route Filter");
+        // System.out.println("Inside Route Filter");
         return null;
     }
 }

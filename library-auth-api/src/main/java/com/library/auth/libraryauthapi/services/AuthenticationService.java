@@ -23,7 +23,9 @@ import com.library.auth.libraryauthapi.repositories.TokenRepository;
 import com.library.auth.libraryauthapi.repositories.UserRepository;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.log4j.Log4j2;
 
+@Log4j2
 @Service
 @RequiredArgsConstructor
 public class AuthenticationService {
@@ -174,6 +176,25 @@ public class AuthenticationService {
         logout(token);
         userRepository.delete(userDetails);
         return "Profile deleted successfully";
+    }
+
+    public Boolean isValid(String token) {
+        Optional<Token> tokenOptional = tokenRepository.findByToken(token);
+
+        if (!tokenOptional.isPresent()) {
+            return false;
+        }
+
+        Token tkn = tokenOptional.get();
+
+        if (!tkn.getToken().equals(token))
+            return false;
+
+
+        if (JWTService.isTokenExpired(tkn.getToken()))
+            return false;
+
+        return true;
     }
 
 }

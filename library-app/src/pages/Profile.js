@@ -33,7 +33,7 @@ export default function ProfilePage() {
   const getProfile = async () => {
     console.log(sessionStorage.getItem("token"));
     return await axios
-      .get(ApiContext.getUrl() + "/user", config)
+      .get(ApiContext.getUrl() + "/auth/user", config)
       .then((res) => {
         console.log(res.data);
         setEmail(res.data.email);
@@ -54,7 +54,7 @@ export default function ProfilePage() {
   const handleUpdate = async () => {
     axios
       .put(
-        ApiContext.getUrl() + "/user",
+        ApiContext.getUrl() + "/auth/user",
         {
           email: email,
           username: username,
@@ -78,7 +78,7 @@ export default function ProfilePage() {
   const handleDelete = async () => {
     axios
     .delete(
-      ApiContext.getUrl() + "/user",
+      ApiContext.getUrl() + "/auth/user",
       config
     )
     .then((res) => {

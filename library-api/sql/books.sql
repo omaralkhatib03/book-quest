@@ -1,4 +1,4 @@
--- use BOOKQUEST;
+use BOOKQUEST;
 create table Book (ISBN varchar(255) not null, title varchar(255) not null, author varchar(255) not null, primary key (ISBN));
 create table Fiction (ISBN varchar(255) not null, numpages integer not null, genre varchar(255) not null, isPaperBack bit not null,  price REAL not null, primary key (ISBN));
 create table NonFiction (ISBN varchar(255) not null, numpages integer not null, genre varchar(255) not null, isPaperBack bit not null, isTextBook bit not null, price REAL not null, primary key (ISBN));
